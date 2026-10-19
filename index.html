@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urban Green Collect - Service de Précollecte & Assainissement à Yaoundé</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter & Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            green: '#16a34a',
+                            darkgreen: '#14532d',
+                            neon: '#22c55e',
+                            lightgreen: '#dcfce7',
+                            accent: '#f59e0b',
+                            blue: '#0284c7'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #14532d 0%, #16a34a 50%, #15803d 100%);
+        }
+        .text-glow {
+            text-shadow: 0 0 12px rgba(34, 197, 94, 0.4);
+        }
+        .hero-pattern {
+            background-color: #064e3b;
+            background-image: radial-gradient(#22c55e 0.75px, transparent 0.75px), radial-gradient(#22c55e 0.75px, #064e3b 0.75px);
+            background-size: 30px 30px;
+            background-position: 0 0,15px 15px;
+            opacity: 0.95;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-green selection:text-white">
+
+    <!-- TOP BAR INFO -->
+    <div class="bg-brand-darkgreen text-white text-xs md:text-sm py-2 px-4">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
+            <div class="flex items-center space-x-4">
+                <span><i class="fa-solid fa-location-dot text-brand-neon mr-1"></i> Nkomo II, Yaoundé, Cameroun</span>
+                <span class="hidden sm:inline"><i class="fa-solid fa-clock text-brand-neon mr-1"></i> Lu - Sa: 07h00 - 18h00</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="tel:695299947" class="hover:text-brand-neon transition"><i class="fa-solid fa-phone text-brand-neon mr-1"></i> 6 95 29 99 47</a>
+                <span class="opacity-50">|</span>
+                <a href="tel:651233192" class="hover:text-brand-neon transition">6 51 23 31 192</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- NAVIGATION BAR -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-md border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                
+                <!-- BRAND LOGO -->
+                <a href="#" class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-xl bg-brand-green flex items-center justify-center text-white text-2xl shadow-lg shadow-brand-green/30">
+                        <i class="fa-solid fa-recycle"></i>
+                    </div>
+                    <div>
+                        <span class="font-heading font-extrabold text-xl md:text-2xl text-slate-900 tracking-tight block leading-none">
+                            URBAN <span class="text-brand-green">GREEN</span>
+                        </span>
+                        <span class="text-xs font-bold tracking-widest text-slate-500 uppercase block">COLLECT SARL</span>
+                    </div>
+                </a>
+
+                <!-- DESKTOP NAV LINKS -->
+                <nav class="hidden md:flex items-center space-x-8 font-medium text-slate-600">
+                    <a href="#accueil" class="hover:text-brand-green transition-colors">Accueil</a>
+                    <a href="#services" class="hover:text-brand-green transition-colors">Nos Services</a>
+                    <a href="#offre" class="hover:text-brand-green transition-colors">Offre Spéciale</a>
+                    <a href="#atouts" class="hover:text-brand-green transition-colors">Pourquoi Nous ?</a>
+                    <a href="#calculateur" class="hover:text-brand-green transition-colors">Simulateur</a>
+                    <a href="#faq" class="hover:text-brand-green transition-colors">FAQ</a>
+                </nav>
+
+                <!-- CTA BUTTON -->
+                <div class="hidden lg:flex items-center gap-3">
+                    <a href="https://wa.me/237695299947?text=Bonjour%20Urban%20Green%20Collect,%20je%20souhaite%20m'abonner%20%C3%A0%20vos%20services." 
+                       target="_blank" 
+                       class="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold px-5 py-2.5 rounded-xl shadow-lg shadow-emerald-500/20 transition-all transform hover:-translate-y-0.5 flex items-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span>Contact WhatsApp</span>
+                    </a>
+                </div>
+
+                <!-- MOBILE MENU BUTTON -->
+                <button id="menu-btn" class="md:hidden text-slate-700 hover:text-brand-green focus:outline-none p-2" aria-label="Toggle Navigation Menu">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- MOBILE MENU DROPDOWN -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-3">
+            <a href="#accueil" class="mobile-link block py-2 font-medium text-slate-700 hover:text-brand-green border-b border-slate-100">Accueil</a>
+            <a href="#services" class="mobile-link block py-2 font-medium text-slate-700 hover:text-brand-green border-b border-slate-100">Nos Services</a>
+            <a href="#offre" class="mobile-link block py-2 font-medium text-slate-700 hover:text-brand-green border-b border-slate-100">Offre Spéciale</a>
+            <a href="#atouts" class="mobile-link block py-2 font-medium text-slate-700 hover:text-brand-green border-b border-slate-100">Pourquoi Nous ?</a>
+            <a href="#calculateur" class="mobile-link block py-2 font-medium text-slate-700 hover:text-brand-green border-b border-slate-100">Simulateur de Devis</a>
+            <a href="#faq" class="mobile-link block py-2 font-medium text-slate-700 hover:text-brand-green border-b border-slate-100">FAQ</a>
+            <div class="pt-2">
+                <a href="https://wa.me/237695299947?text=Bonjour%20Urban%20Green%20Collect,%20je%20souhaite%20souscrire%20à%20vos%20services." target="_blank" class="w-full bg-emerald-500 text-white font-semibold py-3 rounded-xl flex items-center justify-center gap-2 shadow-md">
+                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                    <span>Nous contacter sur WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="accueil" class="relative hero-pattern text-white py-16 lg:py-24 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- HERO LEFT CONTENT -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 bg-brand-neon/20 border border-brand-neon/40 backdrop-blur-md px-4 py-1.5 rounded-full text-brand-neon font-semibold text-sm">
+                        <i class="fa-solid fa-leaf"></i>
+                        <span>Service de Précollecte agréé à Yaoundé</span>
+                    </div>
+
+                    <h1 class="font-heading font-extrabold text-3xl sm:text-5xl lg:text-6xl leading-tight text-white">
+                        Ne laissez plus vos poubelles <span class="text-brand-neon text-glow">s'entasser !</span>
+                    </h1>
+
+                    <p class="text-slate-200 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                        Vous cherchez une solution rapide, régulière et fiable pour la collecte de vos ordures à domicile ? 
+                        <strong class="text-white">Urban Green Collect</strong> prend soin de votre environnement au quotidien.
+                    </p>
+
+                    <!-- QUICK HIGHLIGHTS -->
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2 text-left">
+                        <div class="bg-white/10 backdrop-blur-sm p-3 rounded-xl border border-white/10">
+                            <i class="fa-solid fa-truck-ramp-box text-brand-neon text-xl mb-1"></i>
+                            <p class="font-bold text-sm">Passages Réguliers</p>
+                            <p class="text-xs text-slate-300">À domicile & PME</p>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-sm p-3 rounded-xl border border-white/10">
+                            <i class="fa-solid fa-box-tissue text-brand-neon text-xl mb-1"></i>
+                            <p class="font-bold text-sm">Pack Offert</p>
+                            <p class="text-xs text-slate-300">Bac + Sacs + Javel</p>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-sm p-3 rounded-xl border border-white/10 col-span-2 sm:col-span-1">
+                            <i class="fa-solid fa-broom text-brand-neon text-xl mb-1"></i>
+                            <p class="font-bold text-sm">Propreté 100%</p>
+                            <p class="text-xs text-slate-300">Nettoyage garanti</p>
+                        </div>
+                    </div>
+
+                    <!-- HERO ACTION BUTTONS -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="tel:695299947" class="w-full sm:w-auto bg-brand-neon hover:bg-green-500 text-slate-950 font-bold px-8 py-4 rounded-xl shadow-lg shadow-brand-neon/30 transition transform hover:-translate-y-0.5 text-center flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-phone-volume text-lg"></i>
+                            <span>Appeler : 6 95 29 99 47</span>
+                        </a>
+                        <a href="#offre" class="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-4 rounded-xl border border-white/20 backdrop-blur-sm transition text-center flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-gift text-brand-neon"></i>
+                            <span>Voir le Pack Gratuit</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- HERO RIGHT BADGE / DISPLAY -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative w-full max-w-md bg-white text-slate-900 rounded-3xl p-6 md:p-8 shadow-2xl border border-slate-100">
+                        <div class="absolute -top-4 -right-4 bg-red-600 text-white font-extrabold text-xs tracking-wider uppercase px-4 py-2 rounded-full shadow-md animate-pulse">
+                            Offre de Lancement
+                        </div>
+
+                        <div class="text-center pb-6 border-b border-slate-100">
+                            <span class="text-xs font-bold text-brand-green uppercase tracking-widest">Souscription Simple</span>
+                            <h2 class="font-heading font-extrabold text-2xl text-slate-900 mt-1">Un environnement sain à portée de main</h2>
+                        </div>
+
+                        <ul class="space-y-4 py-6 text-sm">
+                            <li class="flex items-start gap-3">
+                                <span class="bg-emerald-100 text-brand-green p-1.5 rounded-lg font-bold"><i class="fa-solid fa-check"></i></span>
+                                <span><strong>Précollecte d'ordures</strong> ménagères et industrielles à domicile.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="bg-emerald-100 text-brand-green p-1.5 rounded-lg font-bold"><i class="fa-solid fa-check"></i></span>
+                                <span><strong>Matériel adapté :</strong> Tricycles motorisés et bacs normalisés.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="bg-emerald-100 text-brand-green p-1.5 rounded-lg font-bold"><i class="fa-solid fa-check"></i></span>
+                                <span><strong>Entretien & Jardinage :</strong> Espaces privés et lieux publics.</span>
+                            </li>
+                        </ul>
+
+                        <a href="https://wa.me/237695299947?text=Bonjour,%20je%20souhaite%20obtenir%20des%20informations%20sur%20vos%20tarifs" target="_blank" class="w-full block text-center bg-slate-900 hover:bg-slate-800 text-white font-bold py-3.5 rounded-xl shadow-md transition">
+                            <i class="fa-solid fa-paper-plane mr-2 text-brand-neon"></i> Demander une visite gratuite
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section id="services" class="py-20 bg-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-brand-green font-bold text-sm uppercase tracking-wider">Ce que nous faisons</span>
+                <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-slate-900 mt-2">Nos Services Professionnels</h2>
+                <p class="text-slate-600 mt-4 text-base">Nous proposons une gestion globale et rigoureuse des déchets pour préserver la propreté de vos domiciles et de vos locaux professionnels à Yaoundé.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                
+                <!-- SERVICE CARD 1 -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200/60 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-16 h-16 rounded-2xl bg-emerald-100 text-brand-green flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-trash-can-arrow-up"></i>
+                        </div>
+                        <h3 class="font-heading font-bold text-xl text-slate-900 mb-3">1. Précollecte d'Ordures à Domicile</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            Passage régulier de nos équipes devant chez vous pour évacuer vos bacs et sacs d'ordures ménagères. Dites adieu aux odeurs et aux tas de détritus.
+                        </p>
+                    </div>
+                    <ul class="text-xs text-slate-500 space-y-2 border-t border-slate-100 pt-4 font-medium">
+                        <li><i class="fa-solid fa-circle-check text-brand-green mr-1.5"></i> Pour Ménages & Commerces</li>
+                        <li><i class="fa-solid fa-circle-check text-brand-green mr-1.5"></i> Planning de passage fixe</li>
+                    </ul>
+                </div>
+
+                <!-- SERVICE CARD 2 -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200/60 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-16 h-16 rounded-2xl bg-emerald-100 text-brand-green flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-pump-soap"></i>
+                        </div>
+                        <h3 class="font-heading font-bold text-xl text-slate-900 mb-3">2. Assainissement & Entretien</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            Services de désinfection, jardinage, curage de drainages et entretien rigoureux des espaces privés ou ouverts au public pour un cadre de vie salubre.
+                        </p>
+                    </div>
+                    <ul class="text-xs text-slate-500 space-y-2 border-t border-slate-100 pt-4 font-medium">
+                        <li><i class="fa-solid fa-circle-check text-brand-green mr-1.5"></i> Jardinage & Espaces Verts</li>
+                        <li><i class="fa-solid fa-circle-check text-brand-green mr-1.5"></i> Produits de désinfection fournis</li>
+                    </ul>
+                </div>
+
+                <!-- SERVICE CARD 3 -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200/60 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-16 h-16 rounded-2xl bg-emerald-100 text-brand-green flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-truck-pickup"></i>
+                        </div>
+                        <h3 class="font-heading font-bold text-xl text-slate-900 mb-3">3. Intervention Rapide & Équipée</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            Interventions ponctuelles ou urgentes avec notre flotte de tricycles spécialisés et camions bennes adaptés aux accès difficiles de la ville.
+                        </p>
+                    </div>
+                    <ul class="text-xs text-slate-500 space-y-2 border-t border-slate-100 pt-4 font-medium">
+                        <li><i class="fa-solid fa-circle-check text-brand-green mr-1.5"></i> Agents en tenues sécurisées</li>
+                        <li><i class="fa-solid fa-circle-check text-brand-green mr-1.5"></i> Bacs roulants à disposition</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PACKAGING OFFERT SECTION -->
+    <section id="offre" class="py-16 bg-gradient-to-br from-emerald-600 to-green-800 text-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            
+            <div class="bg-white/10 backdrop-blur-md rounded-3xl p-8 md:p-12 border border-white/20 shadow-2xl">
+                <div class="grid lg:grid-cols-12 gap-8 items-center">
+                    
+                    <div class="lg:col-span-7 space-y-4">
+                        <div class="inline-block bg-yellow-400 text-slate-950 font-extrabold text-xs uppercase tracking-widest px-3 py-1 rounded-full">
+                            🎁 Cadeau de bienvenue offert
+                        </div>
+                        <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-white">
+                            Souscrivez aujourd'hui et recevez votre <span class="text-yellow-300">Packaging Offert !</span>
+                        </h2>
+                        <p class="text-slate-100 text-base leading-relaxed">
+                            Afin de vous garantir un démarrage dans les meilleures conditions de propreté et d'hygiène, Urban Green Collect vous offre un kit complet dès la souscription à votre contrat d'abonnement.
+                        </p>
+
+                        <!-- PACK ITEMS -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
+                            <div class="bg-white text-slate-900 p-4 rounded-2xl text-center shadow-md">
+                                <div class="text-3xl text-brand-green mb-1"><i class="fa-solid fa-dumpster"></i></div>
+                                <h4 class="font-bold text-sm">1 Bac Poubelle</h4>
+                                <p class="text-xs text-slate-500">Normalisé & Résistant</p>
+                            </div>
+                            <div class="bg-white text-slate-900 p-4 rounded-2xl text-center shadow-md">
+                                <div class="text-3xl text-brand-green mb-1"><i class="fa-solid fa-box-archive"></i></div>
+                                <h4 class="font-bold text-sm">1 Rouleau Sacs</h4>
+                                <p class="text-xs text-slate-500">Haute résistance</p>
+                            </div>
+                            <div class="bg-white text-slate-900 p-4 rounded-2xl text-center shadow-md">
+                                <div class="text-3xl text-brand-green mb-1"><i class="fa-solid fa-bottle-droplet"></i></div>
+                                <h4 class="font-bold text-sm">1L Javel Premium</h4>
+                                <p class="text-xs text-slate-500">Sweet Clean & Building</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 flex flex-col items-center justify-center text-center bg-white/10 p-6 rounded-2xl border border-white/10">
+                        <span class="text-yellow-300 font-extrabold text-2xl uppercase tracking-tight">Tarifs Abordables</span>
+                        <p class="text-xs text-slate-200 mt-1 mb-6">Service accessible à tous les ménages et petites entreprises de Yaoundé.</p>
+                        
+                        <a href="https://wa.me/237695299947?text=Bonjour,%20je%20souhaite%20profiter%20de%20l'Offre%20Packaging%20Offert%20(Bac%20+%20Sacs%20+%20Javel)" 
+                           target="_blank" 
+                           class="w-full bg-yellow-400 hover:bg-yellow-300 text-slate-950 font-extrabold py-4 px-6 rounded-xl shadow-xl transition transform hover:scale-105 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span>Rejoindre la communauté</span>
+                        </a>
+                        <p class="text-[11px] text-slate-300 mt-3"><i class="fa-solid fa-shield-halved mr-1"></i> Sans engagement à long terme - Annulable à tout moment</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ATOUTS / POURQUOI NOUS CHOISIR -->
+    <section id="atouts" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-brand-green font-bold text-sm uppercase tracking-wider">Nos Engagements</span>
+                <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-slate-900 mt-2">Pourquoi Choisir Urban Green Collect ?</h2>
+                <p class="text-slate-600 mt-3 text-base">Un service de proximité pensé pour le confort et la santé de votre famille.</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100 text-center hover:bg-brand-lightgreen/40 transition">
+                    <div class="w-14 h-14 bg-brand-green text-white rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg text-slate-900 mb-2">Équipe Professionnelle</h3>
+                    <p class="text-xs text-slate-600">Agents formés, courtois et équipés de tenues de sécurité de haute visibilité.</p>
+                </div>
+
+                <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100 text-center hover:bg-brand-lightgreen/40 transition">
+                    <div class="w-14 h-14 bg-brand-green text-white rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fa-solid fa-clock-check"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg text-slate-900 mb-2">Ponctualité Garantie</h3>
+                    <p class="text-xs text-slate-600">Respect strict des jours et heures de passage convenus dans votre secteur.</p>
+                </div>
+
+                <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100 text-center hover:bg-brand-lightgreen/40 transition">
+                    <div class="w-14 h-14 bg-brand-green text-white rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg text-slate-900 mb-2">Proactivité & Réactivité</h3>
+                    <p class="text-xs text-slate-600">Disponibilité téléphonique et intervention rapide en cas de besoin spécifique.</p>
+                </div>
+
+                <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100 text-center hover:bg-brand-lightgreen/40 transition">
+                    <div class="w-14 h-14 bg-brand-green text-white rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fa-solid fa-hand-holding-dollar"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg text-slate-900 mb-2">Tarifs Accessibles</h3>
+                    <p class="text-xs text-slate-600">Des formules adaptées aux bourses de chaque ménage sans frais cachés.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CALCULATEUR / SIMULATEUR DE DEVIS -->
+    <section id="calculateur" class="py-20 bg-slate-900 text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center mb-12">
+                <span class="text-brand-neon font-bold text-sm uppercase tracking-wider">Estimation Rapide</span>
+                <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-white mt-2">Simulateur d'Abonnement</h2>
+                <p class="text-slate-400 mt-2 text-sm">Estimez votre besoin et obtenez une proposition personnalisée en quelques clics.</p>
+            </div>
+
+            <div class="bg-slate-800 p-6 md:p-10 rounded-3xl border border-slate-700 shadow-2xl">
+                <form id="calc-form" class="space-y-6" onsubmit="return false;">
+                    
+                    <!-- TYPE DE CLIENT -->
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-300 mb-2">Type d'établissement :</label>
+                        <div class="grid grid-cols-2 gap-4">
+                            <label class="cursor-pointer">
+                                <input type="radio" name="client_type" value="Ménage / Domicile" checked class="peer sr-only">
+                                <div class="p-4 rounded-xl border border-slate-600 text-center peer-checked:border-brand-neon peer-checked:bg-brand-neon/10 peer-checked:text-brand-neon transition font-semibold text-sm">
+                                    <i class="fa-solid fa-house text-xl block mb-1"></i> Ménage / Domicile
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="client_type" value="Petite Entreprise / Commerce" class="peer sr-only">
+                                <div class="p-4 rounded-xl border border-slate-600 text-center peer-checked:border-brand-neon peer-checked:bg-brand-neon/10 peer-checked:text-brand-neon transition font-semibold text-sm">
+                                    <i class="fa-solid fa-store text-xl block mb-1"></i> Entreprise / Commerce
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- FREQUENCE DE PASSAGE -->
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-300 mb-2">Fréquence souhaitée de collecte :</label>
+                        <select id="freq" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-white focus:outline-none focus:border-brand-neon">
+                            <option value="1 passage par semaine">1 passage par semaine</option>
+                            <option value="2 passages par semaine" selected>2 passages par semaine (Recommandé)</option>
+                            <option value="3 passages ou + par semaine">3 passages ou + par semaine</option>
+                        </select>
+                    </div>
+
+                    <!-- MATERIEL EN PLUS -->
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-300 mb-2">Services complémentaires souhaités :</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center space-x-3 text-sm text-slate-300 cursor-pointer">
+                                <input type="checkbox" id="jardinage" class="rounded border-slate-700 text-brand-green focus:ring-brand-neon">
+                                <span>Service de Jardinage / Taille d'arbres</span>
+                            </label>
+                            <label class="flex items-center space-x-3 text-sm text-slate-300 cursor-pointer">
+                                <input type="checkbox" id="desinfection" class="rounded border-slate-700 text-brand-green focus:ring-brand-neon">
+                                <span>Désinfection & Nettoyage des bacs</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- BOUTON D'ENVOI SIMULATION -->
+                    <button type="button" id="submit-calc" class="w-full bg-brand-neon hover:bg-green-500 text-slate-950 font-extrabold py-4 rounded-xl transition flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-xl"></i>
+                        <span>Envoyer ma demande par WhatsApp</span>
+                    </button>
+
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="py-20 bg-slate-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center mb-16">
+                <span class="text-brand-green font-bold text-sm uppercase tracking-wider">Des Questions ?</span>
+                <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-slate-900 mt-2">Foire Aux Questions (FAQ)</h2>
+                <p class="text-slate-600 mt-2 text-sm">Tout ce que vous devez savoir sur nos services à Yaoundé.</p>
+            </div>
+
+            <div class="space-y-4">
+                
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+                    <button class="faq-btn w-full px-6 py-5 text-left font-heading font-bold text-slate-900 flex justify-between items-center hover:bg-slate-50">
+                        <span>Comment s'effectue la précollecte à mon domicile ?</span>
+                        <i class="fa-solid fa-chevron-down text-brand-green transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6 text-slate-600 text-sm border-t border-slate-100 pt-4">
+                        Nos agents munis de tricycles spécialisés passent devant votre domicile selon le calendrier convenu. Vous déposez votre bac poubelle ou votre sac fermé devant votre portail, et nous nous chargeons de son évacuation propre vers les points de regroupement agréés.
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+                    <button class="faq-btn w-full px-6 py-5 text-left font-heading font-bold text-slate-900 flex justify-between items-center hover:bg-slate-50">
+                        <span>Quels sont les quartiers desservis à Yaoundé ?</span>
+                        <i class="fa-solid fa-chevron-down text-brand-green transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6 text-slate-600 text-sm border-t border-slate-100 pt-4">
+                        Notre siège est basé à Nkomo II, mais nous couvrons une grande partie des quartiers de Yaoundé (Nkomo, Biteng, Messamendongo, Ahala, Ekounou, Awae, etc.). Contactez-nous pour vérifier notre passage dans votre rue !
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+                    <button class="faq-btn w-full px-6 py-5 text-left font-heading font-bold text-slate-900 flex justify-between items-center hover:bg-slate-50">
+                        <span>Comment recevoir le Packaging Offert (Bac + Sacs + Javel) ?</span>
+                        <i class="fa-solid fa-chevron-down text-brand-green transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6 text-slate-600 text-sm border-t border-slate-100 pt-4">
+                        Le packaging offert est remis directement à votre domicile lors de la signature et de la validation de votre premier contrat d'abonnement mensuel ou trimestriel.
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+                    <button class="faq-btn w-full px-6 py-5 text-left font-heading font-bold text-slate-900 flex justify-between items-center hover:bg-slate-50">
+                        <span>Proposez-vous des contrats pour les entreprises ?</span>
+                        <i class="fa-solid fa-chevron-down text-brand-green transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6 text-slate-600 text-sm border-t border-slate-100 pt-4">
+                        Oui ! Nous accompagnons les petites et moyennes entreprises, magasins, restaurants, complexes scolaires et bureaux avec des fréquences de passage sur mesure et des facturations adaptées.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT & LOCATION -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12">
+                
+                <!-- CONTACT INFO -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div>
+                        <span class="text-brand-green font-bold text-sm uppercase tracking-wider">Contactez-nous</span>
+                        <h2 class="font-heading font-extrabold text-3xl text-slate-900 mt-1">Nous sommes à votre écoute</h2>
+                        <p class="text-slate-600 text-sm mt-2">Passez dans nos locaux ou contactez nos équipes par téléphone et WhatsApp.</p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4 p-4 bg-slate-50 rounded-2xl">
+                            <div class="w-10 h-10 bg-brand-green/10 text-brand-green rounded-xl flex items-center justify-center text-lg flex-shrink-0">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-slate-900">Adresse / Localisation</h4>
+                                <p class="text-xs text-slate-600">Nkomo II, Yaoundé, Cameroun</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 bg-slate-50 rounded-2xl">
+                            <div class="w-10 h-10 bg-brand-green/10 text-brand-green rounded-xl flex items-center justify-center text-lg flex-shrink-0">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-slate-900">Téléphones Directs</h4>
+                                <p class="text-xs text-slate-600">6 95 29 99 47 / 6 51 23 31 192 / 6 72 62 74 97</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 bg-slate-50 rounded-2xl">
+                            <div class="w-10 h-10 bg-brand-green/10 text-brand-green rounded-xl flex items-center justify-center text-lg flex-shrink-0">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-slate-900">Adresse Email</h4>
+                                <p class="text-xs text-slate-600">paulpatrickoliye@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SOCIAL MEDIA -->
+                    <div>
+                        <h4 class="font-bold text-sm text-slate-900 mb-3">Suivez-nous sur les réseaux</h4>
+                        <div class="flex gap-3">
+                            <a href="https://www.facebook.com/profile.php?id=61595665735000" target="_blank" class="w-10 h-10 bg-blue-600 text-white rounded-xl flex items-center justify-center hover:opacity-90 transition">
+                                <i class="fa-brands fa-facebook-f"></i>
+                            </a>
+                            <a href="https://wa.me/237695299947" target="_blank" class="w-10 h-10 bg-emerald-500 text-white rounded-xl flex items-center justify-center hover:opacity-90 transition">
+                                <i class="fa-brands fa-whatsapp text-lg"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DIRECT MESSAGE FORM -->
+                <div class="lg:col-span-7 bg-slate-50 p-8 rounded-3xl border border-slate-200">
+                    <h3 class="font-heading font-bold text-xl text-slate-900 mb-6">Envoyez-nous un message</h3>
+                    
+                    <form id="contact-form" class="space-y-4" onsubmit="handleFormSubmit(event)">
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">Nom complet *</label>
+                                <input type="text" required placeholder="Votre nom" class="w-full bg-white border border-slate-300 rounded-xl p-3 text-sm focus:outline-none focus:border-brand-green">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">Téléphone *</label>
+                                <input type="tel" required placeholder="Ex: 695299947" class="w-full bg-white border border-slate-300 rounded-xl p-3 text-sm focus:outline-none focus:border-brand-green">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">Quartier à Yaoundé *</label>
+                            <input type="text" required placeholder="Ex: Nkomo II, Biteng..." class="w-full bg-white border border-slate-300 rounded-xl p-3 text-sm focus:outline-none focus:border-brand-green">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">Votre Message / Demande</label>
+                            <textarea rows="4" placeholder="Précisez votre besoin..." class="w-full bg-white border border-slate-300 rounded-xl p-3 text-sm focus:outline-none focus:border-brand-green"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-brand-green hover:bg-green-700 text-white font-bold py-3.5 rounded-xl shadow-md transition">
+                            <i class="fa-solid fa-paper-plane mr-2"></i> Envoyer ma demande
+                        </button>
+                    </form>
+
+                    <div id="form-feedback" class="hidden mt-4 p-4 bg-emerald-100 text-emerald-800 rounded-xl text-sm font-medium">
+                        Merci ! Votre demande a été enregistrée. Notre équipe vous recontactera sous peu.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+            <div class="flex items-center justify-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-brand-green flex items-center justify-center text-white text-base">
+                    <i class="fa-solid fa-recycle"></i>
+                </div>
+                <span class="font-heading font-extrabold text-lg text-white">URBAN GREEN COLLECT SARL</span>
+            </div>
+            <p class="text-xs text-slate-500">Un environnement sain pour une vie plus saine - Yaoundé, Cameroun.</p>
+            <p class="text-xs text-slate-600">&copy; 2026 Urban Green Collect. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- FLOATING WHATSAPP BUTTON -->
+    <a href="https://wa.me/237695299947?text=Bonjour%20Urban%20Green%20Collect!" 
+       target="_blank" 
+       class="fixed bottom-6 right-6 bg-emerald-500 hover:bg-emerald-600 text-white w-14 h-14 rounded-full flex items-center justify-center text-3xl shadow-2xl z-50 transform hover:scale-110 transition duration-300">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // MOBILE MENU TOGGLE
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // FAQ ACCORDION LOGIC
+        const faqBtns = document.querySelectorAll('.faq-btn');
+
+        faqBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const content = btn.nextElementSibling;
+                const icon = btn.querySelector('i');
+
+                // Toggle visibility
+                content.classList.toggle('hidden');
+                
+                // Rotate icon
+                if(content.classList.contains('hidden')) {
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            });
+        });
+
+        // SIMULATEUR WHATSAPP REDIRECT
+        document.getElementById('submit-calc').addEventListener('click', () => {
+            const clientType = document.querySelector('input[name="client_type"]:checked').value;
+            const freq = document.getElementById('freq').value;
+            const jardinage = document.getElementById('jardinage').checked ? "Oui" : "Non";
+            const desinfection = document.getElementById('desinfection').checked ? "Oui" : "Non";
+
+            const text = `Bonjour Urban Green Collect !%0A%0AJe souhaite faire une simulation pour mes besoins :%0A- Type : ${clientType}%0A- Fréquence : ${freq}%0A- Option Jardinage : ${jardinage}%0A- Option Désinfection : ${desinfection}%0A%0APeuvez-vous me recontacter pour un devis final ?`;
+
+            window.open(`https://wa.me/237695299947?text=${text}`, '_blank');
+        });
+
+        // CONTACT FORM SUBMISSION MOCK
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const feedback = document.getElementById('form-feedback');
+            const form = document.getElementById('contact-form');
+            
+            feedback.classList.remove('hidden');
+            form.reset();
+
+            setTimeout(() => {
+                feedback.classList.add('hidden');
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
